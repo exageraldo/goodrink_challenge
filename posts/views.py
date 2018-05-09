@@ -2,11 +2,13 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
+
 from posts.models import Posts
 from posts.serializers import PostSerializer
 
 
-@csrf_exempt
+@api_view(['GET', 'POST'])
 def posts_list(request):
     """
     List all posts, or create a new post.
