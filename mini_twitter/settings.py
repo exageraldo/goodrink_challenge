@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'allauth.account',
     'allauth',
+    'rest_framework.authtoken',
 
     'posts.apps.PostsConfig',
 ]
@@ -108,16 +109,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-JWT_AUTH = {
+
+JWT_AUTH = { 
+    'JWT_AUTH_HEADER_PREFIX': 'Token',
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
-    'JWT_ALLOW_REFRESH': True,
 }
 
+
+
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    )
+        'rest_framework.authentication.TokenAuthentication',
+    ),
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
