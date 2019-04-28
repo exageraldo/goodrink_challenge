@@ -4,7 +4,7 @@ from django.db import models
 
 class Post(models.Model):
     content = models.CharField(max_length=120, blank=False)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
